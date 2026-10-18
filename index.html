@@ -1,18 +1,494 @@
----
-layout: default
----
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RoviPro | Autonomous mobile robots and robot software, Brisbane</title>
+<meta name="description" content="RoviPro designs autonomous mobile robots, mobile manipulators and the AgentDrive and Fleet OS software that runs them, for industry in Australia. Brisbane, Queensland.">
+<meta name="theme-color" content="#070b14">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-<div class="posts">
-  {% for post in site.posts %}
-    <article class="post">
+<header class="nav" id="top">
+  <div class="wrap nav__in">
+    <a class="brand" href="#top" aria-label="RoviPro home">
+      <img class="brand__logo" src="assets/logo-light.svg" alt="RoviPro" width="146" height="27">
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#agentdrive">AgentDrive</a>
+      <a href="#fleetos">Fleet&nbsp;OS</a>
+      <a href="#robots">Robots</a>
+      <a href="#safety">Safety</a>
+      <a href="#company">Company</a>
+    </nav>
+    <a class="btn btn--sm btn--ghost nav__cta" href="#contact">Contact</a>
+    <button class="nav__toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
 
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+<main>
 
-      <div class="entry">
-        {{ post.excerpt }}
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__media" aria-hidden="true"></div>
+  <div class="wrap hero__in">
+    <p class="eyebrow eyebrow--light">Brisbane, Australia &middot; Mobile robotics</p>
+    <h1>Robots that do the work.<br><span>Software that keeps them reliable.</span></h1>
+    <p class="hero__lede">RoviPro designs and delivers autonomous mobile robots, mobile manipulators and the robot software behind them for large operators in Australia. Every robot runs on <strong>AgentDrive</strong>, our onboard controller, and is coordinated by <strong>Fleet&nbsp;OS</strong>.</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="#platform">Explore the platform</a>
+      <a class="btn btn--ghost" href="#contact">Talk to our engineers</a>
+    </div>
+  </div>
+  <div class="wrap hero__facts">
+    <div><span class="k">AgentDrive</span><span class="v">Onboard controller, field-proven</span></div>
+    <div><span class="k">Fleet OS</span><span class="v">Agentic fleet platform</span></div>
+    <div><span class="k">AMR &middot; MM &middot; Care</span><span class="v">Three robot families</span></div>
+    <div><span class="k">ISO 3691-4</span><span class="v">Safety design basis</span></div>
+  </div>
+</section>
+
+<!-- PLATFORM OVERVIEW -->
+<section class="section platform" id="platform">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The RoviPro platform</p>
+      <h2>One software stack, from the motor driver to the fleet.</h2>
+      <p class="sec-lede">We build the robot and the software as one system. AgentDrive runs on each robot; Fleet OS runs the site. The same stack drives every product in our lineup, so a site can mix transport, lifting and manipulation without mixing vendors.</p>
+    </div>
+    <div class="stack">
+      <a class="stack__layer stack__layer--fleet" href="#fleetos">
+        <span class="stack__tag">Site level</span>
+        <span class="stack__name">Fleet OS</span>
+        <span class="stack__parts"><i>NodeBuilder</i><i>FlowBuilder</i><i>AgentFMS</i></span>
+        <span class="stack__io">OPC-UA &middot; Modbus &middot; MQTT</span>
+      </a>
+      <a class="stack__layer stack__layer--drive" href="#agentdrive">
+        <span class="stack__tag">Robot level</span>
+        <span class="stack__name">AgentDrive</span>
+        <span class="stack__parts"><i>Mapping &amp; SLAM</i><i>Planning</i><i>FSM execution</i><i>50&nbsp;Hz safety loop</i></span>
+        <span class="stack__io">Web UI &middot; API</span>
+      </a>
+      <a class="stack__layer stack__layer--hw" href="#robots">
+        <span class="stack__tag">Hardware</span>
+        <span class="stack__name">Rovi robots</span>
+        <span class="stack__parts"><i>AMR</i><i>Mobile manipulator</i><i>Care humanoid</i><i>Third-party AGVs &amp; forklifts</i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- AGENTDRIVE -->
+<section class="section section--dark agentdrive" id="agentdrive">
+  <div class="wrap">
+    <div class="split split--top">
+      <div>
+        <p class="eyebrow eyebrow--light">01 &mdash; AgentDrive</p>
+        <h2>An AI-ready robot controller that behaves like industrial equipment.</h2>
       </div>
+      <div>
+        <p class="sec-lede sec-lede--light">AgentDrive is our onboard controller: mapping, localisation, planning, task execution and safety in one stack. It is already integrated into our robots and running in the field.</p>
+      </div>
+    </div>
 
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
-  {% endfor %}
-</div>
+    <figure class="screen screen--wide reveal">
+      <div class="screen__bar"><i></i><i></i><i></i><span>AgentDrive Configurator &middot; waypoint navigation</span></div>
+      <img src="assets/img/ui-agentdrive-waypoints.webp" alt="AgentDrive web interface showing a robot driving a six-waypoint route over a live LiDAR map, with planner and motor outputs" width="1600" height="794" loading="lazy">
+    </figure>
+
+    <div class="fsm reveal">
+      <div class="fsm__intro">
+        <h3>The language model plans. It never drives.</h3>
+        <p>In AgentDrive an LLM never commands the motors directly. It designs a finite-state machine for the task; that state machine is checked and then executed deterministically by the controller. The result is the consistency and repeatability industrial sites expect, with no improvised motion.</p>
+      </div>
+      <ol class="fsm__flow" aria-label="AgentDrive task pipeline">
+        <li><span class="n">1</span><b>Task request</b><small>Plain language or Fleet OS job</small></li>
+        <li><span class="n">2</span><b>LLM designs an FSM</b><small>States, transitions, conditions</small></li>
+        <li><span class="n">3</span><b>FSM is checked</b><small>Before anything moves</small></li>
+        <li class="is-exec"><span class="n">4</span><b>Deterministic execution</b><small>Same input, same behaviour</small></li>
+        <li class="is-safe"><span class="n">5</span><b>50&nbsp;Hz control &amp; safety loop</b><small>Low-level, always on</small></li>
+      </ol>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <h4>Tagless navigation</h4>
+        <p>Integrated 2D/3D mapping, SLAM, path planning and obstacle avoidance. No floor tape, QR tags or reflectors to install or maintain.</p>
+      </div>
+      <div class="feature">
+        <h4>Commodity compute</h4>
+        <p>Runs on low-cost boards: Intel N100, NVIDIA Jetson Orin Nano, Rockchip RK3588 and Raspberry Pi class hardware.</p>
+      </div>
+      <div class="feature">
+        <h4>One stack, many machines</h4>
+        <p>The same software across AMRs, AGVs, forklifts and mobile manipulators. Integration onto a new platform in as little as one day.</p>
+      </div>
+      <div class="feature">
+        <h4>Web UI and FMS ready</h4>
+        <p>Configure, map, drive and tune from a browser. Connects to Fleet OS or an existing fleet management system.</p>
+      </div>
+    </div>
+
+    <div class="duo">
+      <figure class="screen reveal">
+        <div class="screen__bar"><i></i><i></i><i></i><span>3D map preview</span></div>
+        <img src="assets/img/ui-3dmap.webp" alt="3D point-cloud map of an indoor site built by AgentDrive" width="900" height="1050" loading="lazy">
+      </figure>
+      <figure class="screen reveal">
+        <div class="screen__bar"><i></i><i></i><i></i><span>Motor control &amp; path tuning</span></div>
+        <img src="assets/img/ui-control.webp" alt="AgentDrive motor control and path tuning panels" width="900" height="927" loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET OS -->
+<section class="section fleetos" id="fleetos">
+  <div class="wrap">
+    <div class="split split--top">
+      <div>
+        <p class="eyebrow">02 &mdash; Fleet OS</p>
+        <h2>An agentic platform for running a mixed robot fleet.</h2>
+      </div>
+      <div>
+        <p class="sec-lede">Fleet OS connects robots, workflows and plant systems. AI agents take on the slow parts of deployment: writing drivers, composing workflows and handling exceptions, while operators stay in control.</p>
+      </div>
+    </div>
+
+    <div class="fleet">
+      <figure class="screen screen--light fleet__shot reveal">
+        <div class="screen__bar"><i></i><i></i><i></i><span>Fleet OS &middot; dashboard</span></div>
+        <img src="assets/img/ui-fleetos-dashboard.webp" alt="Fleet OS dashboard with fleet status, activity over 24 hours and per-robot utilisation" width="892" height="719" loading="lazy">
+        <figcaption>Interface shown with demonstration data.</figcaption>
+      </figure>
+      <div class="fleet__mods">
+        <article class="mod">
+          <span class="mod__k">NodeBuilder</span>
+          <h3>Robot drivers from a PDF manual</h3>
+          <p>An AI coding agent reads a device's manual and generates the driver and interface code to bring it into the fleet.</p>
+        </article>
+        <article class="mod">
+          <span class="mod__k">FlowBuilder</span>
+          <h3>Workflows by drag-and-drop or plain text</h3>
+          <p>A visual designer for multi-step robot workflows. Connect nodes by hand, or describe the process in words and refine the result.</p>
+        </article>
+        <article class="mod">
+          <span class="mod__k">AgentFMS</span>
+          <h3>Agent-based fleet management</h3>
+          <ul>
+            <li>Real-time multi-robot monitoring and scheduling</li>
+            <li>Dynamic task allocation and collision avoidance</li>
+            <li>Exception detection and recovery</li>
+          </ul>
+        </article>
+        <div class="mod mod--io">
+          <span class="mod__k">Plant integration</span>
+          <div class="chips"><span>OPC-UA</span><span>Modbus</span><span>MQTT</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROBOTS -->
+<section class="section section--tint robots" id="robots">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">03 &mdash; Robot lineup</p>
+      <h2>Three robot families, one platform.</h2>
+      <p class="sec-lede">Each family is built on AgentDrive and managed by Fleet OS, from pallet-level transport to dual-arm assistance.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Robot families">
+      <button role="tab" aria-selected="true" aria-controls="p-amr" id="t-amr">AMR <small>Rovi series</small></button>
+      <button role="tab" aria-selected="false" aria-controls="p-mm" id="t-mm">Mobile Manipulator <small>Rovi MM</small></button>
+      <button role="tab" aria-selected="false" aria-controls="p-care" id="t-care">Care Humanoid <small>In development</small></button>
+    </div>
+
+    <!-- AMR -->
+    <div class="panel" role="tabpanel" id="p-amr" aria-labelledby="t-amr">
+      <div class="family">
+        <div class="family__img family__img--photo"><img src="assets/img/scene-amr.jpg" alt="Rovi series autonomous mobile robot on a warehouse floor (visualisation)" width="1400" height="800" loading="lazy"><span class="viz">Visualisation</span></div>
+        <div class="family__txt">
+          <h3>Rovi series AMR</h3>
+          <p>Autonomous mobile robots for material transport in factories and warehouses. Tagless navigation, automatic docking and charging, and the full AgentDrive stack on board.</p>
+          <dl class="specs">
+            <div><dt>Payload</dt><dd>150&ndash;600 kg</dd></div>
+            <div><dt>Max speed</dt><dd>2.0 m/s</dd></div>
+            <div><dt>Charging</dt><dd>Auto-charging dock</dd></div>
+            <div><dt>Navigation</dt><dd>Tagless, 2D/3D SLAM</dd></div>
+          </dl>
+        </div>
+      </div>
+      <div class="models">
+        <article class="model">
+          <div class="model__img"><img class="is-tall" src="assets/img/rovi-lite.webp" alt="Rovi Lite cart AMR" width="856" height="900" loading="lazy"></div>
+          <h4>Rovi Lite</h4>
+          <p class="model__spec">150 kg class</p>
+          <p>Swappable 48&nbsp;V battery and vision-based localisation on a low-cost compute board.</p>
+        </article>
+        <article class="model">
+          <div class="model__img"><img src="assets/img/rovi-amr.webp" alt="Rovi200 AMR" width="1100" height="706" loading="lazy"></div>
+          <h4>Rovi200</h4>
+          <p class="model__spec">200 kg payload</p>
+          <p>General-purpose transport platform for carts, bins and top modules.</p>
+        </article>
+        <article class="model">
+          <div class="model__img"><img src="assets/img/rovi-lifter.webp" alt="Rovi600 AMR with lifting top" width="1100" height="742" loading="lazy"></div>
+          <h4>Rovi600 &amp; lifter variants</h4>
+          <p class="model__spec">600 kg payload</p>
+          <p>Heavy-load transport; lifter variants raise racks and carts from underneath.</p>
+        </article>
+        <article class="model">
+          <div class="model__img"><img src="assets/img/rovi-low.webp" alt="Rovi UL ultra-low-profile AMR" width="1100" height="805" loading="lazy"></div>
+          <h4>Rovi UL</h4>
+          <p class="model__spec">150 mm height</p>
+          <p>Ultra-low-profile platform that drives under low carts and fixtures.</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- MM -->
+    <div class="panel" role="tabpanel" id="p-mm" aria-labelledby="t-mm" hidden>
+      <div class="family family--mm">
+        <div class="family__img family__img--photo"><img src="assets/img/scene-mm.jpg" alt="Rovi MM mobile manipulator picking parts at a workbench (visualisation)" width="1400" height="800" loading="lazy"><span class="viz">Visualisation</span></div>
+        <div class="family__txt">
+          <h3>Rovi MM</h3>
+          <p>An AMR base with a collaborative arm, for machine tending, picking and station-to-station handling. End-effectors are selected for each process.</p>
+          <p>AgentDrive runs navigation and manipulation as one system, so the robot is configured, monitored and integrated through a single interface instead of two.</p>
+          <ul class="ticks">
+            <li>Navigation</li>
+            <li>Manipulation</li>
+            <li>Web UI</li>
+            <li>API</li>
+          </ul>
+          <p class="note">One unified platform. Arm and end-effector options are specified per application.</p>
+        </div>
+      </div>
+      <div class="mm-more">
+        <article class="model mm-card">
+          <div class="mm-card__imgs">
+            <img src="assets/img/rovi-mm.webp" alt="Rovi MM mobile manipulator, three-quarter view" width="675" height="900" loading="lazy">
+            <img src="assets/img/rovi-mm-side.webp" alt="Rovi MM mobile manipulator, side view" width="566" height="900" loading="lazy">
+          </div>
+          <h4>Rovi MM</h4>
+          <p class="model__spec">AMR base + collaborative arm</p>
+          <p>Compact base with an integrated arm column, battery and controller. Arm, tool and top module are configured per application.</p>
+        </article>
+        <div class="tools">
+          <div class="tools__head">
+            <h4>Tools for Rovi MM</h4>
+            <p>End-effector options, selected for each process and managed from AgentDrive.</p>
+          </div>
+          <div class="tools__grid">
+          <article class="tool"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M9 4h14v7H9z"/><path d="M11 11v8l-3 4v5M21 11v8l3 4v5"/><path d="M13 22h6"/></svg><div><h5>Electric parallel gripper</h5><p>Adaptive stroke and grip force for boxes, parts and containers.</p></div></article>
+          <article class="tool"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M12 4h8v6h-8z"/><path d="M16 10v6"/><path d="M8 16h16l-2 5H10z"/><path d="M11 26h2M15 26h2M19 26h2"/></svg><div><h5>Vacuum gripper</h5><p>Suction cups for flat, sealed or packaged items.</p></div></article>
+          <article class="tool"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="9" r="5"/><path d="M11 14v4h10v-4"/><path d="M9 18h14v4H9z"/><path d="M13 22v6M19 22v6"/></svg><div><h5>Quick tool changer</h5><p>Swap end-effectors between tasks without re-wiring.</p></div></article>
+          <article class="tool"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 10h22v14H5z"/><circle cx="16" cy="17" r="4.5"/><path d="M11 10l2-4h6l2 4"/></svg><div><h5>Wrist camera</h5><p>Vision for part localisation and pick verification.</p></div></article>
+          <article class="tool"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4v10"/><path d="M12 10l4 4 4-4"/><path d="M6 18h20v5H6z"/><path d="M9 26h14"/></svg><div><h5>Force/torque sensing</h5><p>Controlled contact for insertion, pressing and placing.</p></div></article>
+          <article class="tool"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 22h20"/><path d="M9 22V12h5v10M18 22V8h5v14"/><path d="M4 26h24"/></svg><div><h5>Custom fingers & fixtures</h5><p>Process-specific tooling designed per application.</p></div></article>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARE -->
+    <div class="panel" role="tabpanel" id="p-care" aria-labelledby="t-care" hidden>
+      <div class="care">
+        <div class="care__hero">
+          <img src="assets/img/render-v2-b.jpg" alt="Concept render of the RoviPro care humanoid, a wheeled upper-body robot with two arms, holding a glass of water" width="1600" height="900" loading="lazy">
+          <span class="badge">In development &middot; Coming 2028</span>
+        </div>
+        <div class="care__body">
+          <div>
+            <h3>Care Humanoid</h3>
+            <p>A wheeled, upper-body humanoid for aged care and home care: fetching, handing over and reaching tasks that support people living independently. It is currently under development, with field trials planned in Australia.</p>
+            <p class="note">Images are design renders of the concept under development.</p>
+          </div>
+          <dl class="specs specs--grid">
+            <div><dt>Arms</dt><dd>Dual 7-axis QDD, 5 kg per arm</dd></div>
+            <div><dt>Gripper</dt><dd>2-finger, 0.5&ndash;100 N grip force</dd></div>
+            <div><dt>Lift</dt><dd>Wire-driven, shoulder height 600&ndash;1,400 mm</dd></div>
+            <div><dt>Base</dt><dd>Omnidirectional, three 2-axis wheel modules</dd></div>
+            <div><dt>Safety layer</dt><dd>24+ ToF proximity sensors, independent of the AI</dd></div>
+            <div><dt>Power</dt><dd>48 V battery</dd></div>
+          </dl>
+        </div>
+        <div class="care__scenes">
+          <figure><img src="assets/img/scene-v2-handover.jpg" alt="Concept render: the care humanoid handing a glass of water to an older woman in a living room" width="1600" height="900" loading="lazy"><figcaption>Handover &middot; concept render</figcaption></figure>
+          <figure><img src="assets/img/scene-v2-reach.jpg" alt="Concept render: the care humanoid picking up glasses from the floor" width="1600" height="900" loading="lazy"><figcaption>Floor-level reach &middot; concept render</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIELD -->
+<section class="section field" id="field">
+  <div class="wrap">
+    <div class="split split--top">
+      <div>
+        <p class="eyebrow">04 &mdash; Proven in the field</p>
+        <h2>Built with, and for, demanding industrial users.</h2>
+      </div>
+      <div>
+        <p class="sec-lede">Our technology has been developed alongside industrial partners and shipped to research and OEM customers. These are the engagements behind it.</p>
+      </div>
+    </div>
+    <div class="proof">
+      <div class="proof__item">
+        <span class="proof__n">4<small>yrs</small></span>
+        <h4>R&amp;D partnership with Orica</h4>
+        <p>A four-year research and development partnership with Orica, the global mining services company.</p>
+      </div>
+      <div class="proof__item">
+        <span class="proof__n">1,000+</span>
+        <h4>Orica field units</h4>
+        <p>Our products have been applied to more than 1,000 Orica field units.</p>
+      </div>
+      <div class="proof__item">
+        <span class="proof__n">5</span>
+        <h4>Agricultural robots delivered</h4>
+        <p>Five agricultural robots delivered to the University of Auckland.</p>
+      </div>
+      <div class="proof__item">
+        <span class="proof__n">4</span>
+        <h4>Robot OEMs supplied</h4>
+        <p>Controllers and sensor packs supplied to four robot manufacturers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY -->
+<section class="section section--dark safety" id="safety">
+  <div class="wrap">
+    <div class="split split--top">
+      <div>
+        <p class="eyebrow eyebrow--light">05 &mdash; Safety &amp; standards</p>
+        <h2>Safety sits below the intelligence, not inside it.</h2>
+      </div>
+      <div>
+        <p class="sec-lede sec-lede--light">AI decides what a robot should do next. It does not get a vote on whether the robot stops. Our safety functions run in a separate low-level layer that the planning software cannot override.</p>
+      </div>
+    </div>
+    <div class="layers">
+      <div class="layer">
+        <span class="layer__k">Planning</span>
+        <p>LLM-designed state machines, checked before execution. No direct motor commands from the model.</p>
+      </div>
+      <div class="layer">
+        <span class="layer__k">Execution</span>
+        <p>Deterministic FSM execution on AgentDrive for repeatable behaviour, cycle after cycle.</p>
+      </div>
+      <div class="layer layer--hot">
+        <span class="layer__k">Control &amp; safety loop &middot; 50&nbsp;Hz</span>
+        <p>An emergency stop, a safety-controller trip or a stalled wheel stops the robot immediately.</p>
+      </div>
+    </div>
+    <div class="std">
+      <div class="std__badge">ISO 3691-4</div>
+      <p>Our mobile robots are <strong>designed to ISO 3691-4 requirements</strong>, the safety standard for driverless industrial trucks and their systems. The care humanoid adds a proximity safety layer of 24+ ToF sensors that works independently of its AI.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section class="section section--tint company" id="company">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow">06 &mdash; Company</p>
+        <h2>An Australian robotics company, engineering-led from day one.</h2>
+        <p class="sec-lede">RoviPro is based in Brisbane, Queensland. We are a small, focused team of robotics engineers who design the robots, write the software and support the deployments ourselves, so customers deal directly with the people who built the system.</p>
+        <dl class="corp">
+          <div><dt>Company</dt><dd>ROVIPRO PTY LTD</dd></div>
+          <div><dt>ABN</dt><dd>30 659 486 192</dd></div>
+          <div><dt>Address</dt><dd>Golden Crest Pl, Bellbowrie QLD 4070, Australia</dd></div>
+        </dl>
+      </div>
+      <article class="ceo">
+        <div class="ceo__head">
+          <div class="ceo__mono" aria-hidden="true">CP</div>
+          <div>
+            <h3>Dr Chanoh Park</h3>
+            <p class="ceo__role">Founder &amp; CEO</p>
+          </div>
+        </div>
+        <ul class="ceo__cv">
+          <li>PhD in robotics, CSIRO and Queensland University of Technology (QUT)</li>
+          <li>Former computer-vision team lead at Orica</li>
+          <li>First author, <em>IEEE Transactions on Robotics</em></li>
+          <li>Editor, <em>MDPI Drones</em></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section section--dark contact" id="contact">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow eyebrow--light">Contact</p>
+        <h2>Tell us about your site.</h2>
+        <p class="sec-lede sec-lede--light">Planning an AMR deployment, integrating AgentDrive into your own machine, or interested in research collaboration? Send us a note and an engineer will reply.</p>
+        <address class="addr">
+          <span>ROVIPRO PTY LTD</span>
+          <span>Golden Crest Pl</span>
+          <span>Bellbowrie QLD 4070, Australia</span>
+          <a href="mailto:info@rovipro.com.au">info@rovipro.com.au</a>
+        </address>
+      </div>
+      <form class="form" id="contactForm" novalidate>
+        <div class="form__row">
+          <label>Name<input name="name" type="text" autocomplete="name" required></label>
+          <label>Organisation<input name="org" type="text" autocomplete="organization"></label>
+        </div>
+        <label>Email<input name="email" type="email" autocomplete="email" required></label>
+        <label>Topic
+          <select name="topic">
+            <option>AMR deployment</option>
+            <option>Mobile manipulator</option>
+            <option>AgentDrive integration</option>
+            <option>Fleet OS</option>
+            <option>Research collaboration</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>Message<textarea name="message" rows="5" required></textarea></label>
+        <button class="btn btn--primary" type="submit">Send message</button>
+        <p class="form__hint">Opens your email app with the message ready to send.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__brand">
+      <a class="brand brand--light" href="#top" aria-label="RoviPro home">
+        <img class="brand__logo" src="assets/logo-light.svg" alt="RoviPro" width="146" height="27">
+      </a>
+      <p>Autonomous mobile robots and robot software.<br>Brisbane, Australia.</p>
+    </div>
+    <div class="foot__cols">
+      <div><h5>Platform</h5><a href="#agentdrive">AgentDrive</a><a href="#fleetos">Fleet OS</a><a href="#safety">Safety</a></div>
+      <div><h5>Robots</h5><a href="#robots" data-tab="t-amr">AMR</a><a href="#robots" data-tab="t-mm">Mobile Manipulator</a><a href="#robots" data-tab="t-care">Care Humanoid</a></div>
+      <div><h5>Company</h5><a href="#company">About</a><a href="#contact">Contact</a></div>
+    </div>
+  </div>
+  <div class="wrap foot__legal">
+    <span>&copy; <span id="yr">2026</span> ROVIPRO PTY LTD &middot; ABN 30 659 486 192</span>
+    <span>Golden Crest Pl, Bellbowrie QLD 4070, Australia</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
